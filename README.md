@@ -36,3 +36,4 @@ Esta tabla tendrá los siguientes campos:
 - Precio | int | No puede ser nulo.
 - Cantidad | int | No puede ser nulo.
 # Diagrama entidad relación
+![img](https://github.com/user-attachments/assets/1535a3de-c907-47ba-b5dd-572b45a9f847)
