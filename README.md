@@ -1,4 +1,6 @@
 # API REST Pedidos Hamburguesas
+![portada](https://github.com/user-attachments/assets/33226166-33e0-4d45-9900-ca3ab8687b3e)
+
 # Idea API REST
 La API consistirá en un restaurante de hamburguesas al cual se pedirá online. Las tablas serán “Usuarios”, “Hamburguesas”, “Pedidos”.
 
