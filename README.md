@@ -9,7 +9,7 @@ Los usuarios podrán ver todo tipo de hamburguesas disponibles, además de poder
 Los usuarios con rol de “administrador” podrán tanto añadir hamburguesas como borrar, actualizar y consultar estas mismas. También podrán ver el historial de pedidos de los demás usuarios.
 # Justificación del proyecto 
 El proyecto de la API REST para un restaurante de hamburguesas tiene como objetivo principal crear una plataforma digital que permita a los usuarios realizar pedidos en línea de forma eficiente y segura. 
-Este sistema está diseñado para mejorar la experiencia del cliente y optimizar la gestión interna de un restaurante especializado en hamburguesas, facilitando tanto la operación para los administradores como la interacción para los usuarios.
+Este sistema está diseñado para mejorar la experiencia del cliente y optimizar la gestión interna de un restaurante especializado en hamburguesas.
 También no hay mucha competencia en el mundo de las hamburguesas ya que no hay muchas páginas web que ofrezcan estos servicios lo cual hace que la idea pueda destacar y funcionar.
 # Tablas de la API REST
 - En la tabla usuarios se guardarán los usuarios registrados.
