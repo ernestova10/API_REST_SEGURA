@@ -85,6 +85,8 @@ Los endpoints será los siguientes:
         B. 400 Bad Request: Datos de entrada inválidos.
 
         C. 401 Unauthorized: Credenciales incorrectas.
+
+        D. 404 Not Found: Usuario no encontrado.
     - **Cuerpo de la solicitud**:
 
           json
@@ -106,7 +108,49 @@ Los endpoints será los siguientes:
 
         A. 200 OK: Solicitud procesada con éxito.
 
-        B. 401 Unauthorized: Credenciales incorrectas.
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Usuario no encontrado.
+4. Actualizar usuario
+    - **Método**: Put
+    - **Endpoint**: /usuario/perfil (perfil es nombre de usuario)
+    - **Descripción**: Permite actualizar la información personal del usuario autenticado.
+    - **Cabeceras**: Token
+    - **Permisos**: Sólo usuario autenticado.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Usuario no encontrado.
+    - **Cuerpo de la solicitud**:
+
+          json
+
+              {
+                  "nombre": "string",
+      
+                  "edad": "int",
+      
+                  "sexo": "string",
+      
+                  "correo": "string"
+      
+              }
+5. Eliminar usuario
+    - **Método**: Delete
+    - **Endpoint**: /usuario/{id}
+    - **Descripción**: Permite actualizar la información personal del usuario autenticado.
+    - **Cabeceras**: Token
+    - **Permisos**: Usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 400 Bad Request: El usuario intentó eliminarse a sí mismo.
 
         C. 403 Forbidden: Usuario sin permisos para realizar la acción.
-4. 
+
+        D. 404 Not Found: Usuario no encontrado.
+   
