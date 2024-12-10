@@ -84,5 +84,29 @@ Los endpoints será los siguientes:
 
         B. 400 Bad Request: Datos de entrada inválidos.
 
-        C. 401 Unauthorized: Credenciales incorrectas o falta de token de autenticación.
-3. 
+        C. 401 Unauthorized: Credenciales incorrectas.
+    - **Cuerpo de la solicitud**:
+
+          json
+
+              {
+                  "correo": "string",
+      
+                  "contraseña": "string"
+
+              }
+
+3. Obtener perfil de usuario
+    - **Método**: Get
+    - **Endpoint**: /usuario/perfil (perfil es nombre de usuario)
+    - **Descripción**: Devuelve la información del usuario que está autenticado.
+    - **Cabeceras**: Token
+    - **Permisos**: Sólo usuario autenticado o usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 401 Unauthorized: Credenciales incorrectas.
+
+        C. 403 Forbidden: Usuario sin permisos para realizar la acción.
+4. 
