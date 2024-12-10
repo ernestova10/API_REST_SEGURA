@@ -43,3 +43,13 @@ Esta tabla tendrá los siguientes campos:
 - Cantidad | int | No puede ser nulo.
 # Diagrama entidad relación
 ![img](https://github.com/user-attachments/assets/1535a3de-c907-47ba-b5dd-572b45a9f847)
+# Endpoints
+## Tabla Usuario
+Los endpoints será los siguientes:
+1. Registrar usuarios
+- **Método**: Post
+- **Endpoint**: /usuario/registrar
+- **Descripción**: Permite registrar un usuario en el sistema.
+- **Excepciones**:
+a. 201: Created 
+- 
