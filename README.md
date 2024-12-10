@@ -56,6 +56,7 @@ Los endpoints será los siguientes:
 
         B. 400 Bad Request: Datos de entrada inválidos.
     - **Cuerpo de la solicitud**:
+
           json
       
               {
