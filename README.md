@@ -51,5 +51,7 @@ Los endpoints será los siguientes:
 - **Endpoint**: /usuario/registrar
 - **Descripción**: Permite registrar un usuario en el sistema.
 - **Excepciones**:
-a. 201: Created 
-- 
+
+A. 201: Created: Creado el usuario correctamente.
+
+B. 400 Bad Request: Datos de entrada inválidos.
