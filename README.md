@@ -332,6 +332,7 @@ Los usuarios con rol "Admin" tendrán acceso a funcionalidades exclusivas como a
 Los usuarios con rol "User" podrán realizar pedidos y consultar su propio historial.
 
 **Cálculo del Precio Final del Pedido**:
+
 El precio total de un pedido se calcula como:
 - Precio Total = Precio Hamburguesa × Cantidad
     
