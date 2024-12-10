@@ -262,7 +262,7 @@ Los endpoints será los siguientes:
               }
 2. **Ver historial de pedidos del usuario autenticado**
     - **Método**: Get
-    - **Endpoint**: /pedidos/historial
+    - **Endpoint**: /pedidos/historial/perfil (perfil es nombre de usuario)
     - **Descripción**: Devuelve el historial de pedidos del usuario autenticado.
     - **Cabeceras**: Token
     - **Permisos**: Sólo usuario autenticado.
@@ -288,8 +288,33 @@ Los endpoints será los siguientes:
         C. 404 Not Found: Pedidos no encontrados.
 4. **Actualizar pedidos**
     - **Método**: Put
-    - **Endpoint**: /hamburguesas/{id}
-    - **Descripción**: Permite actualizar la hamburguesa.
+    - **Endpoint**: /pedidos/{id}
+    - **Descripción**: Permite actualizar un pedido existente. Solo el usuario que realizó el pedido o un administrador pueden realizar esta acción.
+    - **Cabeceras**: Token
+    - **Permisos**: Usuario con rol Admin o usuario autenticado.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+  
+        B. 400 Bad Request: La cantidad deber ser mayor a 0.
+
+        C. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        D. 404 Not Found: Pedido no encontrado.
+
+    - **Cuerpo de la solicitud**
+
+          json
+
+              {
+
+                  "cantidad": "int"
+
+              }
+5. **Eliminar pedido**
+    - **Método**: Delete
+    - **Endpoint**: /pedidos/{id}
+    - **Descripción**: Permite eliminar el pedido.
     - **Cabeceras**: Token
     - **Permisos**: Usuario con rol Admin.
     - **Excepciones**:
@@ -298,19 +323,4 @@ Los endpoints será los siguientes:
 
         B. 403 Forbidden: Usuario sin permisos para realizar la acción.
 
-        C. 404 Not Found: Hamburguesa no encontrada.
-
-    - **Cuerpo de la solicitud**
-          json
-
-              {
-
-                  "nombre": "string",
-      
-                  "precio": "int",
-      
-                  "tipo_carne": "string",
-      
-                  "ingredientes": ["string"]
-      
-              }
+        C. 404 Not Found: Pedido no encontrado.
