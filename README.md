@@ -324,3 +324,16 @@ Los endpoints será los siguientes:
         B. 403 Forbidden: Usuario sin permisos para realizar la acción.
 
         C. 404 Not Found: Pedido no encontrado.
+      
+# Lógica de Negocio
+**Gestión de Roles**:
+Los usuarios con rol "Admin" tendrán acceso a funcionalidades exclusivas como agregar, actualizar y eliminar hamburguesas, así como consultar pedidos de todos los usuarios.
+Los usuarios con rol "User" podrán realizar pedidos y consultar su propio historial.
+
+**Cálculo del Precio Final del Pedido**:
+El precio total de un pedido se calcula como:
+- Precio Total = Precio Hamburguesa × Cantidad
+    
+**Validaciones de Pedido**:
+- Verificar que la hamburguesa solicitada existe.
+- Validar que la cantidad sea mayor a 0.
