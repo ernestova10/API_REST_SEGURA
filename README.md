@@ -46,7 +46,7 @@ Esta tabla tendrá los siguientes campos:
 # Endpoints
 ## Tabla Usuario
 Los endpoints será los siguientes:
-1. Registrar usuarios
+1. **Registrar usuarios**
     - **Método**: Post
     - **Endpoint**: /usuario/registrar
     - **Descripción**: Permite registrar un usuario en el sistema.
@@ -74,7 +74,7 @@ Los endpoints será los siguientes:
                   "correo": "string"
       
               }
-2. Iniciar sesión
+2. **Iniciar sesión**
     - **Método**: Post
     - **Endpoint**: /usuario/login
     - **Descripción**: Permite a un usuario iniciar sesión y obtener el token de acceso.
@@ -98,7 +98,7 @@ Los endpoints será los siguientes:
 
               }
 
-3. Obtener perfil de usuario
+3. **Obtener perfil de usuario**
     - **Método**: Get
     - **Endpoint**: /usuario/perfil (perfil es nombre de usuario)
     - **Descripción**: Devuelve la información del usuario que está autenticado.
@@ -111,7 +111,7 @@ Los endpoints será los siguientes:
         B. 403 Forbidden: Usuario sin permisos para realizar la acción.
 
         C. 404 Not Found: Usuario no encontrado.
-4. Actualizar usuario
+4. **Actualizar usuario**
     - **Método**: Put
     - **Endpoint**: /usuario/perfil (perfil es nombre de usuario)
     - **Descripción**: Permite actualizar la información personal del usuario autenticado.
@@ -138,7 +138,7 @@ Los endpoints será los siguientes:
                   "correo": "string"
       
               }
-5. Eliminar usuario
+5. **Eliminar usuario**
     - **Método**: Delete
     - **Endpoint**: /usuario/{id}
     - **Descripción**: Permite actualizar la información personal del usuario autenticado.
@@ -153,4 +153,68 @@ Los endpoints será los siguientes:
         C. 403 Forbidden: Usuario sin permisos para realizar la acción.
 
         D. 404 Not Found: Usuario no encontrado.
-   
+## Tabla Hamburguesa
+Los endpoints será los siguientes:
+1. **Listar todas las hamburguesas**
+    - **Método**: Get
+    - **Endpoint**: /hamburguesas
+    - **Descripción**: Devuelve un listado de todas las hamburguesas.
+    - **Permisos**: Sólo usuario autenticado o usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+2. **Añadir hamburguesa**
+    - **Método**: Post
+    - **Endpoint**: /hamburguesas
+    - **Descripción**: Permite añadir una nueva hamburguesa al sistema.
+    - **Permisos**: Usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 201 Created: Creado el usuario correctamente.
+
+        B. 400 Bad Request: Datos de entrada inválidos.
+
+    - **Cuerpo de la solicitud**
+
+          json
+
+              {
+                  "nombre": "string",
+      
+                  "precio": "int",
+      
+                  "tipo_carne": "string",
+      
+                  "ingredientes": ["string"]
+      
+              }
+3. **Actualizar hamburguesa**
+    - **Método**: Put
+    - **Endpoint**: /hamburguesas/{id}
+    - **Descripción**: Permite actualizar la hamburguesa.
+    - **Permisos**: Usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Hamburguesa no encontrada.
+
+    - **Cuerpo de la solicitud**
+          json
+
+              {
+
+                      "nombre": "string",
+      
+                      "precio": "int",
+      
+                      "tipo_carne": "string",
+      
+                      "ingredientes": ["string"]
+      
+              }
+
