@@ -327,6 +327,7 @@ Los endpoints será los siguientes:
       
 # Lógica de Negocio
 **Gestión de Roles**:
+
 Los usuarios con rol "Admin" tendrán acceso a funcionalidades exclusivas como agregar, actualizar y eliminar hamburguesas, así como consultar pedidos de todos los usuarios.
 Los usuarios con rol "User" podrán realizar pedidos y consultar su propio historial.
 
