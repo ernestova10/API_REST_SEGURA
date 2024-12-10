@@ -174,7 +174,7 @@ Los endpoints será los siguientes:
     - **Permisos**: Usuario con rol Admin.
     - **Excepciones**:
 
-        A. 201 Created: Creado el usuario correctamente.
+        A. 201 Created: Creada la hamburguesa correctamente.
 
         B. 400 Bad Request: Datos de entrada inválidos.
 
