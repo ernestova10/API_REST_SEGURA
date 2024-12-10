@@ -159,6 +159,7 @@ Los endpoints será los siguientes:
     - **Método**: Get
     - **Endpoint**: /hamburguesas
     - **Descripción**: Devuelve un listado de todas las hamburguesas.
+    - **Cabeceras**: Token
     - **Permisos**: Sólo usuario autenticado o usuario con rol Admin.
     - **Excepciones**:
 
@@ -169,6 +170,7 @@ Los endpoints será los siguientes:
     - **Método**: Post
     - **Endpoint**: /hamburguesas
     - **Descripción**: Permite añadir una nueva hamburguesa al sistema.
+    - **Cabeceras**: Token
     - **Permisos**: Usuario con rol Admin.
     - **Excepciones**:
 
@@ -194,6 +196,7 @@ Los endpoints será los siguientes:
     - **Método**: Put
     - **Endpoint**: /hamburguesas/{id}
     - **Descripción**: Permite actualizar la hamburguesa.
+    - **Cabeceras**: Token
     - **Permisos**: Usuario con rol Admin.
     - **Excepciones**:
 
@@ -218,7 +221,7 @@ Los endpoints será los siguientes:
       
               }
 4. **Eliminar hamburguesa**
-   - **Método**: Delete
+    - **Método**: Delete
     - **Endpoint**: /hamburguesa/{id}
     - **Descripción**: Permite eliminar la hamburguesa.
     - **Cabeceras**: Token
@@ -230,3 +233,84 @@ Los endpoints será los siguientes:
         B. 403 Forbidden: Usuario sin permisos para realizar la acción.
 
         C. 404 Not Found: Hamburguesa no encontrada.
+## Tabla Pedidos
+Los endpoints será los siguientes:
+1. **Realizar pedidos**
+    - **Método**: Post
+    - **Endpoint**: /pedidos
+    - **Descripción**: Permite realizar un nuevo pedido.
+    - **Cabeceras**: Token
+    - **Permisos**: Sólo usuario autenticado o usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Hamburguesa o usuario no encontrado.
+    - **Cuerpo de la solicitud**
+
+          json
+
+              {
+                  "nombre_usuario": "String",
+      
+                  "nombre_hamburguesa": "String",
+      
+                  "cantidad": "int"
+
+              }
+2. **Ver historial de pedidos del usuario autenticado**
+    - **Método**: Get
+    - **Endpoint**: /pedidos/historial
+    - **Descripción**: Devuelve el historial de pedidos del usuario autenticado.
+    - **Cabeceras**: Token
+    - **Permisos**: Sólo usuario autenticado.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Pedidos no encontrados.
+3. **Ver historial de todos los pedidos**
+    - **Método**: Get
+    - **Endpoint**: /pedidos/admin/historial
+    - **Descripción**: Permite a los administradores ver el historial de pedidos de todos los usuarios.
+    - **Cabeceras**: Token
+    - **Permisos**: Sólo usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Pedidos no encontrados.
+4. **Actualizar pedidos**
+    - **Método**: Put
+    - **Endpoint**: /hamburguesas/{id}
+    - **Descripción**: Permite actualizar la hamburguesa.
+    - **Cabeceras**: Token
+    - **Permisos**: Usuario con rol Admin.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Hamburguesa no encontrada.
+
+    - **Cuerpo de la solicitud**
+          json
+
+              {
+
+                  "nombre": "string",
+      
+                  "precio": "int",
+      
+                  "tipo_carne": "string",
+      
+                  "ingredientes": ["string"]
+      
+              }
