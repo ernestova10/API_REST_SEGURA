@@ -57,13 +57,21 @@ Los endpoints será los siguientes:
         B. 400 Bad Request: Datos de entrada inválidos.
     - **Cuerpo de la solicitud**:
           json
+      
               {
+      
                   "nombre": "string",
+      
                   "contraseña": "string",
+      
                   "rol": "string (Admin o User)",
+      
                   "edad": "int",
+      
                   "sexo": "string (Masculino, Femenino, Otro)",
+      
                   "correo": "string"
+      
               }
 2. Iniciar sesión
     - **Método**: Post
