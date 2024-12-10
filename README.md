@@ -338,3 +338,14 @@ El precio total de un pedido se calcula como:
 **Validaciones de Pedido**:
 - Verificar que la hamburguesa solicitada existe.
 - Validar que la cantidad sea mayor a 0.
+
+# Restricciones de Seguridad
+**Autenticación y Autorización**:
+- Autenticación basada en tokens (JWT).
+- Control de acceso según el rol del usuario.
+
+**Validación de Datos**:
+- Validación estricta de las entradas en cada solicitud.
+
+**Cifrado de Contraseñas**:
+- Contraseñas almacenadas usando algoritmos de hash seguros como bcrypt.
