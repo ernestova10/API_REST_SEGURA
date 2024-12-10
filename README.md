@@ -47,11 +47,33 @@ Esta tabla tendrá los siguientes campos:
 ## Tabla Usuario
 Los endpoints será los siguientes:
 1. Registrar usuarios
-- **Método**: Post
-- **Endpoint**: /usuario/registrar
-- **Descripción**: Permite registrar un usuario en el sistema.
-- **Excepciones**:
+    - **Método**: Post
+    - **Endpoint**: /usuario/registrar
+    - **Descripción**: Permite registrar un usuario en el sistema.
+    - **Excepciones**:
 
-    A. 201: Created: Creado el usuario correctamente.
+        A. 201 Created: Creado el usuario correctamente.
 
-    B. 400 Bad Request: Datos de entrada inválidos.
+        B. 400 Bad Request: Datos de entrada inválidos.
+    - **Cuerpo de la solicitud**:
+          json
+              {
+                  "nombre": "string",
+                  "contraseña": "string",
+                  "rol": "string (Admin o User)",
+                  "edad": "int",
+                  "sexo": "string (Masculino, Femenino, Otro)",
+                  "correo": "string"
+              }
+2. Iniciar sesión
+    - **Método**: Post
+    - **Endpoint**: /usuario/login
+    - **Descripción**: Permite a un usuario iniciar sesión y obtener el token de acceso.
+    - **Excepciones**:
+
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 400 Bad Request: Datos de entrada inválidos.
+
+        C. 401 Unauthorized: Credenciales incorrectas o falta de token de autenticación.
+3. 
