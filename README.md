@@ -141,7 +141,7 @@ Los endpoints será los siguientes:
 5. **Eliminar usuario**
     - **Método**: Delete
     - **Endpoint**: /usuario/{id}
-    - **Descripción**: Permite actualizar la información personal del usuario autenticado.
+    - **Descripción**: Permite eliminar el usuario.
     - **Cabeceras**: Token
     - **Permisos**: Usuario con rol Admin.
     - **Excepciones**:
@@ -208,13 +208,25 @@ Los endpoints será los siguientes:
 
               {
 
-                      "nombre": "string",
+                  "nombre": "string",
       
-                      "precio": "int",
+                  "precio": "int",
       
-                      "tipo_carne": "string",
+                  "tipo_carne": "string",
       
-                      "ingredientes": ["string"]
+                  "ingredientes": ["string"]
       
               }
+4. **Eliminar hamburguesa**
+   - **Método**: Delete
+    - **Endpoint**: /hamburguesa/{id}
+    - **Descripción**: Permite eliminar la hamburguesa.
+    - **Cabeceras**: Token
+    - **Permisos**: Usuario con rol Admin.
+    - **Excepciones**:
 
+        A. 200 OK: Solicitud procesada con éxito.
+
+        B. 403 Forbidden: Usuario sin permisos para realizar la acción.
+
+        C. 404 Not Found: Hamburguesa no encontrada.
