@@ -36,6 +36,14 @@ public class Hamburguesa {
     public Hamburguesa() {
     }
 
+    public Hamburguesa(String nombre, int precio, String tipoDeCarne, List<String> ingredientes, List<Pedido> pedidos) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.tipoDeCarne = tipoDeCarne;
+        this.ingredientes = ingredientes;
+        this.pedidos = pedidos;
+    }
+
     public List<Pedido> getPedidos() {
         return pedidos;
     }

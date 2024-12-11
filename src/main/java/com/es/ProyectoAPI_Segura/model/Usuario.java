@@ -39,6 +39,16 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(List<Pedido> pedidos, String correo, String sexo, int edad, String rol, String contrasenia, String nombre) {
+        this.pedidos = pedidos;
+        this.correo = correo;
+        this.sexo = sexo;
+        this.edad = edad;
+        this.rol = rol;
+        this.contrasenia = contrasenia;
+        this.nombre = nombre;
+    }
+
     public List<Pedido> getPedidos() {
         return pedidos;
     }
