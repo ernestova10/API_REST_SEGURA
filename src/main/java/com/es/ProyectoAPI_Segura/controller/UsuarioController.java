@@ -1,5 +1,6 @@
 package com.es.ProyectoAPI_Segura.controller;
 
+import com.es.ProyectoAPI_Segura.dto.UsuarioDTO;
 import com.es.ProyectoAPI_Segura.model.Usuario;
 import com.es.ProyectoAPI_Segura.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
-        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
+    public ResponseEntity<UsuarioDTO> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        UsuarioDTO nuevoUsuario = usuarioService.crearUsuario(usuarioDTO);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
