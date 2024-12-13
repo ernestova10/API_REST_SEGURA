@@ -25,8 +25,8 @@ public class UsuarioController {
 
     // Obtener todos los usuarios
     @GetMapping
-    public ResponseEntity<List<Usuario>> obtenerUsuarios() {
-        List<Usuario> usuarios = usuarioService.obtenerUsuarios();
+    public ResponseEntity<List<UsuarioDTO>> obtenerUsuarios() {
+        List<UsuarioDTO> usuarios = usuarioService.obtenerUsuarios();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 

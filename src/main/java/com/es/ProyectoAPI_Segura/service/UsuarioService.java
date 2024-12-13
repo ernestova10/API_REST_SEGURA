@@ -6,11 +6,13 @@ import com.es.ProyectoAPI_Segura.model.Usuario;
 import com.es.ProyectoAPI_Segura.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsuarioService {
 
     @Autowired
@@ -20,7 +22,7 @@ public class UsuarioService {
 
     public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
         // Comprobamos que el usuario no existe en la base de datos
-        if (usuarioRepository.findByUsername(usuarioDTO.getUsername()).isPresent()) {
+        if (usuarioRepository.findByUsername(usuarioDTO.getNombre()).isPresent()) {
             throw new DuplicateException("El nombre de usuario ya existe");
         }
 
@@ -37,8 +39,14 @@ public class UsuarioService {
         return usuarioDTO;
     }
 
-    public List<Usuario> obtenerUsuarios() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> obtenerUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarioRepository.findAll().forEach(usuario -> usuarios.add(usuario));
+
+        for (Usuario usuario : usuarios) {
+            UsuarioDTO uDTO =
+        }
+
     }
 
     public Optional<Usuario> obtenerUsuarioPorId(Long id) {

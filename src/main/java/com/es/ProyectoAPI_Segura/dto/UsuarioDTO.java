@@ -6,12 +6,12 @@ public class UsuarioDTO {
 
     private String nombre;
     private String contrasenia;
-    private String rol;
+    private String[] rol;
     private int edad;
     private String sexo;
     private String correo;
 
-    public UsuarioDTO(String nombre, String contrasenia, String rol, int edad, String sexo, String correo) {
+    public UsuarioDTO(String nombre, String contrasenia, int edad, String sexo, String correo,String[] rol) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.rol = rol;
@@ -44,11 +44,11 @@ public class UsuarioDTO {
         this.edad = edad;
     }
 
-    public String getRol() {
+    public String[] getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(String[] rol) {
         this.rol = rol;
     }
 

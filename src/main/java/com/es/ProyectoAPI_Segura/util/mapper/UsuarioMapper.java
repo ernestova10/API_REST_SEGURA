@@ -8,5 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsuarioMapper {
 
+    public UsuarioDTO entityToDTO(Usuario usuario) {
 
+        String[] roles = usuario.getRol().split(",");
+        return new UsuarioDTO(
+              usuario.getNombre(),
+              usuario.getContrasenia(),
+              usuario.getEdad(),
+              usuario.getSexo(),
+              usuario.getCorreo(),
+              roles
+        );
+
+
+    }
 }
