@@ -1,10 +1,17 @@
 package com.es.ProyectoAPI_Segura.service;
 
 import com.es.ProyectoAPI_Segura.dto.UsuarioDTO;
+import com.es.ProyectoAPI_Segura.dto.UsuarioLoginDTO;
+import com.es.ProyectoAPI_Segura.dto.UsuarioRegisterDTO;
 import com.es.ProyectoAPI_Segura.error.exception.DuplicateException;
+import com.es.ProyectoAPI_Segura.error.exception.GenericInternalException;
+import com.es.ProyectoAPI_Segura.error.exception.NotFoundException;
 import com.es.ProyectoAPI_Segura.model.Usuario;
 import com.es.ProyectoAPI_Segura.repository.UsuarioRepository;
+import com.es.ProyectoAPI_Segura.util.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +27,12 @@ public class UsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
+    @Autowired
+    private UsuarioMapper mapper;
+
+    public UsuarioRegisterDTO crearUsuario(UsuarioRegisterDTO usuarioDTO) {
         // Comprobamos que el usuario no existe en la base de datos
-        if (usuarioRepository.findByUsername(usuarioDTO.getNombre()).isPresent()) {
+        if (usuarioRepository.findByNombre(usuarioDTO.getNombre()).isPresent()) {
             throw new DuplicateException("El nombre de usuario ya existe");
         }
 
@@ -39,14 +49,12 @@ public class UsuarioService {
         return usuarioDTO;
     }
 
+
     public List<UsuarioDTO> obtenerUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         usuarioRepository.findAll().forEach(usuario -> usuarios.add(usuario));
 
-        for (Usuario usuario : usuarios) {
-            UsuarioDTO uDTO =
-        }
-
+        return usuarios.stream().map(usuario -> mapper.entityToDTO(usuario)).toList();
     }
 
     public Optional<Usuario> obtenerUsuarioPorId(Long id) {
@@ -54,14 +62,28 @@ public class UsuarioService {
     }
 
     public Usuario actualizarUsuario(Long id, Usuario usuario) {
-        if (usuarioRepository.existsById(id)) {
-            usuario.setId(id);
-            return usuarioRepository.save(usuario);
+        if (!usuarioRepository.existsById(id)) {
+            throw new NotFoundException("Usuario no encontrado");
         }
-        return null;
+
+        Usuario usuarioExistente = usuarioRepository.findById(id).get();
+        usuarioExistente.setNombre(usuario.getNombre());
+        usuarioExistente.setCorreo(usuario.getCorreo());
+        usuarioExistente.setEdad(usuario.getEdad());
+        usuarioExistente.setSexo(usuario.getSexo());
+        usuarioExistente.setRol(usuario.getRol());
+
+        if (usuario.getContrasenia() != null && !usuario.getContrasenia().isEmpty()) {
+            usuarioExistente.setContrasenia(passwordEncoder.encode(usuario.getContrasenia()));
+        }
+
+        return usuarioRepository.save(usuarioExistente);
     }
 
     public void eliminarUsuario(Long id) {
+        if (!usuarioRepository.existsById(id)) {
+            throw new NotFoundException("Usuario no encontrado");
+        }
         usuarioRepository.deleteById(id);
     }
 }

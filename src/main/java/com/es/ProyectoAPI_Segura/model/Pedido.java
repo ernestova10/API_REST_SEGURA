@@ -1,5 +1,6 @@
 package com.es.ProyectoAPI_Segura.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -74,5 +75,9 @@ public class Pedido {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public void setPrecio(int i) {
+
     }
 }

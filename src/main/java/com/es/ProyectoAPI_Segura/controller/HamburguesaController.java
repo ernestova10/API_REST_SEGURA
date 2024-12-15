@@ -19,14 +19,14 @@ public class HamburguesaController {
     @Autowired
     private HamburguesaService hamburguesaService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<HamburguesaDTO> crearHamburguesa(@RequestBody HamburguesaDTO hamburguesaDTO) {
         HamburguesaDTO nuevaHamburguesa = hamburguesaService.crearHamburguesa(hamburguesaDTO);
         return new ResponseEntity<>(nuevaHamburguesa, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<List<HamburguesaDTO>> obtenerUsuarios() {
+    @GetMapping("/")
+    public ResponseEntity<List<HamburguesaDTO>> obtenerHamburguesas() {
         List<HamburguesaDTO> hamburguesas = hamburguesaService.obtenerHamburguesas();
         return new ResponseEntity<>(hamburguesas, HttpStatus.OK);
     }
@@ -36,4 +36,11 @@ public class HamburguesaController {
         HamburguesaDTO hamburguesaActualizada = hamburguesaService.actualizarHamburguesa(id, hamburguesaDTO);
         return new ResponseEntity<>(hamburguesaActualizada, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarHamburguesa(@PathVariable String id) {
+        hamburguesaService.eliminarHamburguesa(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

@@ -1,17 +1,14 @@
 package com.es.ProyectoAPI_Segura.dto;
 
-import jakarta.persistence.Column;
-
-public class UsuarioDTO {
-
+public class UsuarioRegisterDTO {
     private String nombre;
     private String contrasenia;
-    private String[] rol;
+    private String rol;
     private int edad;
     private String sexo;
     private String correo;
 
-    public UsuarioDTO(String nombre, String contrasenia, int edad, String sexo, String correo,String[] rol) {
+    public UsuarioRegisterDTO(String nombre, String contrasenia, String rol, int edad, String sexo, String correo) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.rol = rol;
@@ -20,7 +17,7 @@ public class UsuarioDTO {
         this.correo = correo;
     }
 
-    public UsuarioDTO() {
+    public UsuarioRegisterDTO() {
     }
 
     public String getNombre() {
@@ -39,6 +36,14 @@ public class UsuarioDTO {
         this.contrasenia = contrasenia;
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
     public int getEdad() {
         return edad;
     }
@@ -47,12 +52,12 @@ public class UsuarioDTO {
         this.edad = edad;
     }
 
-    public String[] getRol() {
-        return rol;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setRol(String[] rol) {
-        this.rol = rol;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getSexo() {
@@ -61,13 +66,5 @@ public class UsuarioDTO {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 }

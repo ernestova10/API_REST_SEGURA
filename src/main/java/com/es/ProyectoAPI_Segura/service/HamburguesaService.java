@@ -25,8 +25,8 @@ public class HamburguesaService {
 
 
     public HamburguesaDTO crearHamburguesa(HamburguesaDTO hamburguesaDTO) {
-        // Comprobamos que el usuario no existe en la base de datos
-        if (hamburguesaRepository.findByName(hamburguesaDTO.getNombre()).isPresent()) {
+
+        if (hamburguesaRepository.findByNombre(hamburguesaDTO.getNombre()).isPresent()) {
             throw new DuplicateException("El nombre de la hamburguesa ya existe");
         }
         if (hamburguesaDTO.getNombre().isEmpty()) {
@@ -92,6 +92,19 @@ public class HamburguesaService {
 
     }
 
+    public void eliminarHamburguesa(String id) {
+        Long idL;
+        try {
+            idL = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("El formato de la ID debe ser numérico");
+        }
+
+        Hamburguesa hamburguesa = hamburguesaRepository.findById(idL)
+                .orElseThrow(() -> new NotFoundException("Hamburguesa no encontrada"));
+
+        hamburguesaRepository.delete(hamburguesa);
+    }
 
 
 }
