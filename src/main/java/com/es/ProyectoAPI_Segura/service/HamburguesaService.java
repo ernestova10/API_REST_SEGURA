@@ -17,8 +17,6 @@ import java.util.List;
 @Service
 public class HamburguesaService {
 
-    @Autowired
-    private HamburguesaMapper hamburguesaMapper;
 
     @Autowired
     private HamburguesaRepository hamburguesaRepository;
@@ -33,7 +31,12 @@ public class HamburguesaService {
             throw new BadRequestException("El nombre de la hamburguesa no puede estar vacio");
         }
 
-        Hamburguesa nuevaHamburguesa = hamburguesaMapper.DTOToEntity(hamburguesaDTO);
+        // El mapper está implementado pero no funciona, sim embargo, sin tener que utilizar el mapper y haciendolo aquí si funciona.
+        Hamburguesa nuevaHamburguesa = new Hamburguesa();
+        nuevaHamburguesa.setNombre(hamburguesaDTO.getNombre());
+        nuevaHamburguesa.setPrecio(hamburguesaDTO.getPrecio());
+        nuevaHamburguesa.setTipoDeCarne(hamburguesaDTO.getTipoDeCarne());
+        nuevaHamburguesa.setIngredientes(hamburguesaDTO.getIngredientes());
         hamburguesaRepository.save(nuevaHamburguesa);
 
         return hamburguesaDTO;
@@ -45,7 +48,7 @@ public class HamburguesaService {
         List<HamburguesaDTO> hamburguesasDTO = new ArrayList<>();
 
         for (Hamburguesa hamburguesa : hamburguesas) {
-            HamburguesaDTO hamburguesaDTO = hamburguesaMapper.entityToDTO(hamburguesa);
+            HamburguesaDTO hamburguesaDTO = HamburguesaMapper.entityToDTO(hamburguesa);
             hamburguesasDTO.add(hamburguesaDTO);
 
         }
@@ -64,7 +67,7 @@ public class HamburguesaService {
             throw new NumberFormatException("El formato de la ID debe ser numérico");
         }
 
-        Hamburguesa hamburguesa = hamburguesaRepository.findById(idL).orElseThrow(() -> new NotFoundException("Pedido no encontrado"));
+        Hamburguesa hamburguesa = hamburguesaRepository.findById(idL).orElseThrow(() -> new NotFoundException("Hamburguesa no encontrada"));
 
         if (hamburguesaDTO.getNombre().isEmpty()){
             throw new BadRequestException("El nombre de la hamburguesa no puede estar vacío.");
@@ -86,8 +89,9 @@ public class HamburguesaService {
         }
         hamburguesa.setTipoDeCarne(hamburguesaDTO.getTipoDeCarne());
 
-        HamburguesaDTO hamburguesaActualizada = hamburguesaMapper.entityToDTO(hamburguesa);
+        HamburguesaDTO hamburguesaActualizada = HamburguesaMapper.entityToDTO(hamburguesa);
 
+        hamburguesaRepository.save(hamburguesa);
         return hamburguesaActualizada;
 
     }

@@ -11,6 +11,7 @@ public class PedidosMapper {
         Pedido pedido = new Pedido();
         pedido.setFecha(pedidoDTO.getFecha());
         pedido.setCantidad(pedidoDTO.getCantidad());
+        pedido.setPrecioTotal(pedidoDTO.getPrecio());
         return pedido;
     }
 
@@ -19,6 +20,8 @@ public class PedidosMapper {
         pedidoDTO.setIdUsuario(pedido.getUsuario().getId());
         pedidoDTO.setIdHamburguesa(pedido.getHamburguesa().getId());
         pedidoDTO.setCantidad(pedido.getCantidad());
+        pedidoDTO.setPrecio(pedido.getPrecioTotal());
+        pedidoDTO.setFecha(pedido.getFecha());
         return pedidoDTO;
     }
 }

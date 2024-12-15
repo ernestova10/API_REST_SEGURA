@@ -46,7 +46,8 @@ public class PedidosService {
         Pedido nuevoPedido = pedidosMapper.DTOToEntity(pedidoDTO);
         nuevoPedido.setUsuario(usuario);
         nuevoPedido.setHamburguesa(hamburguesa);
-        nuevoPedido.setPrecio(hamburguesa.getPrecio() * pedidoDTO.getCantidad()); // Calcular precio total
+        nuevoPedido.setFecha(pedidoDTO.getFecha());
+        nuevoPedido.setPrecioTotal(hamburguesa.getPrecio() * pedidoDTO.getCantidad()); // Calcular precio total
 
         pedidosRepository.save(nuevoPedido);
 
@@ -89,8 +90,9 @@ public class PedidosService {
             throw new BadRequestException("La cantidad debe ser mayor a 0");
         }
 
+
         pedido.setCantidad(pedidoDTO.getCantidad());
-        pedido.setPrecio(pedido.getHamburguesa().getPrecio() * pedidoDTO.getCantidad()); // Recalcular precio
+        pedido.setPrecioTotal(pedido.getHamburguesa().getPrecio() * pedidoDTO.getCantidad()); // Recalcular precio
 
         pedidosRepository.save(pedido);
 

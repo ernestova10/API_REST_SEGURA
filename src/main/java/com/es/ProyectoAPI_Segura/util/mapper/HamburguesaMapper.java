@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HamburguesaMapper {
 
-    public HamburguesaDTO entityToDTO(Hamburguesa hamburguesa) {
+    public static HamburguesaDTO entityToDTO(Hamburguesa hamburguesa) {
         HamburguesaDTO hamburguesaDTO = new HamburguesaDTO();
         hamburguesaDTO.setNombre(hamburguesa.getNombre());
         hamburguesaDTO.setPrecio(hamburguesa.getPrecio());
@@ -16,12 +16,13 @@ public class HamburguesaMapper {
         return hamburguesaDTO;
     }
 
-    public Hamburguesa DTOToEntity(HamburguesaDTO hamburguesaDTO) {
+    public static Hamburguesa DTOToEntity(HamburguesaDTO hamburguesaDTO) {
         Hamburguesa hamburguesa = new Hamburguesa();
         hamburguesa.setNombre(hamburguesaDTO.getNombre());
         hamburguesa.setPrecio(hamburguesa.getPrecio());
-        hamburguesa.setIngredientes(hamburguesaDTO.getIngredientes());
         hamburguesa.setTipoDeCarne(hamburguesa.getTipoDeCarne());
+        hamburguesa.setIngredientes(hamburguesaDTO.getIngredientes());
+
         return hamburguesa;
     }
 }

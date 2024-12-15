@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "pedidos")
@@ -26,14 +27,17 @@ public class Pedido {
     @Column(nullable = false)
     private int cantidad;
 
+    @Column(name = "precio_total")
+    private int precioTotal;
     public Pedido() {
     }
 
-    public Pedido(Usuario usuario, Hamburguesa hamburguesa, LocalDate fecha, int cantidad) {
+    public Pedido(Usuario usuario, Hamburguesa hamburguesa, LocalDate fecha, int cantidad, int precioTotal) {
         this.usuario = usuario;
         this.hamburguesa = hamburguesa;
         this.fecha = fecha;
         this.cantidad = cantidad;
+        this.precioTotal = precioTotal;
     }
 
     // Getters y setters
@@ -61,12 +65,15 @@ public class Pedido {
         this.hamburguesa = hamburguesa;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getFecha() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        String fechaString = fecha.format(formatter);
+        return fechaString;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFecha(String fecha) {
+        this.fecha = LocalDate.parse(fecha);
     }
 
     public int getCantidad() {
@@ -77,7 +84,12 @@ public class Pedido {
         this.cantidad = cantidad;
     }
 
-    public void setPrecio(int i) {
 
+    public int getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(int precioTotal) {
+        this.precioTotal = precioTotal;
     }
 }
