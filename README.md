@@ -60,19 +60,13 @@ Los endpoints será los siguientes:
           json
       
               {
-      
-                  "nombre": "string",
-      
-                  "contraseña": "string",
-      
-                  "rol": "string (Admin o User)",
-      
-                  "edad": "int",
-      
-                  "sexo": "string (Masculino, Femenino, Otro)",
-      
-                  "correo": "string"
-      
+                  "nombre": "ernesto",
+                  "contrasenia": "1234",
+                  "rol": "ADMIN",
+                  "edad": "22",
+                  "correo": "ejemplo@gmail.com",
+                  "sexo": "otro"
+
               }
 2. **Iniciar sesión**
     - **Método**: Post
@@ -92,9 +86,9 @@ Los endpoints será los siguientes:
           json
 
               {
-                  "correo": "string",
+                  "username": "string",
       
-                  "contraseña": "string"
+                  "password": "string"
 
               }
 
@@ -129,13 +123,12 @@ Los endpoints será los siguientes:
           json
 
               {
-                  "nombre": "string",
-      
-                  "edad": "int",
-      
-                  "sexo": "string",
-      
-                  "correo": "string"
+                  "nombre": "ernesto",
+                  "contrasenia": "1234",
+                  "rol": "ADMIN",
+                  "edad": "22",
+                  "correo": "ejemplo@gmail.com",
+                  "sexo": "otro"
       
               }
 5. **Eliminar usuario**
@@ -184,11 +177,8 @@ Los endpoints será los siguientes:
 
               {
                   "nombre": "string",
-      
                   "precio": "int",
-      
-                  "tipo_carne": "string",
-      
+                  "tipoDeCarne": "string",
                   "ingredientes": ["string"]
       
               }
@@ -212,11 +202,8 @@ Los endpoints será los siguientes:
               {
 
                   "nombre": "string",
-      
                   "precio": "int",
-      
-                  "tipo_carne": "string",
-      
+                  "tipoDeCarne": "string",
                   "ingredientes": ["string"]
       
               }
@@ -253,11 +240,10 @@ Los endpoints será los siguientes:
           json
 
               {
-                  "nombre_usuario": "String",
-      
-                  "nombre_hamburguesa": "String",
-      
-                  "cantidad": "int"
+                  "idUsuario": "String",
+                  "idNombre": "String",
+                  "fecha": "aa/mm/dd",
+                  "cantidad": 2
 
               }
 2. **Ver historial de pedidos del usuario autenticado**
@@ -307,8 +293,10 @@ Los endpoints será los siguientes:
           json
 
               {
-
-                  "cantidad": "int"
+                  "idUsuario": "String",
+                  "idNombre": "String",
+                  "fecha": "aa/mm/dd",
+                  "cantidad": 3
 
               }
 5. **Eliminar pedido**
@@ -350,3 +338,44 @@ El precio total de un pedido se calcula como:
 
 **Cifrado de Contraseñas**:
 - Contraseñas almacenadas usando algoritmos de hash seguros como bcrypt.
+
+# Excepciones
+1. BadRequestException
+
+Esta excepción se lanza cuando el cliente envía una solicitud que no cumple con los requisitos necesarios o contiene parámetros inválidos.
+
+**Causa típica**: Datos mal formados, valores faltantes o no válidos en la solicitud.
+
+**Código de respuesta HTTP**: 400 Bad Request
+
+2. DuplicateException
+
+Esta excepción se lanza cuando se intenta crear o registrar un recurso que ya existe en el sistema.
+
+**Causa típica**: Intentar registrar un usuario con un correo electrónico o un nombre de usuario ya existente.
+
+**Código de respuesta HTTP**: 409 Conflict
+
+3. GenericInternalException
+
+Esta excepción se utiliza para manejar errores inesperados o generales que ocurren en el lado del servidor.
+
+**Causa típica**: Fallos en la lógica de negocio o errores en el procesamiento interno del servidor.
+
+**Código de respuesta HTTP**: 500 Internal Server Error
+
+4. NotAuthorizedException
+
+Se lanza cuando un usuario intenta acceder a un recurso o realizar una acción para la cual no tiene los permisos adecuados.
+
+**Causa típica**: Intentar acceder a recursos protegidos sin autenticación o con roles insuficientes.
+
+**Código de respuesta HTTP**: 403 Forbidden (o 401 Unauthorized en algunos casos)
+
+5. NotFoundException
+
+Se lanza cuando el recurso solicitado no existe o no puede ser encontrado en el sistema.
+
+**Causa típica**: Buscar un usuario, producto o registro inexistente en la base de datos.
+
+**Código de respuesta HTTP**: 404 Not Found

@@ -15,7 +15,7 @@ public class Hamburguesa {
     private String nombre;
     @Column(nullable = false)
     private int precio;
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String tipoDeCarne;
 
     @ElementCollection
